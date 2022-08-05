@@ -1,7 +1,6 @@
 package option
 
 import (
-	"encoding"
 	"errors"
 )
 
@@ -26,7 +25,7 @@ func (o *Option[T]) Clear() {
 	o.val = nil
 }
 
-func (o Option[T]) IsSome() {
+func (o Option[T]) IsSome() bool {
 	return o.val != nil
 }
 
@@ -42,5 +41,7 @@ func (o Option[T]) Yank() T {
 }
 
 func NewOption[T any]() Option[T] {
-	return Option[T]
+	return Option[T]{
+		val: nil,
+	}
 }
