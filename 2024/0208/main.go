@@ -28,7 +28,31 @@ var errCommonMQPublisherEmpty = errors.New("empty common mq publisher")
 
 func main () {
 	// branch
-	err := PublishPovUpdateSummaryEvent("f4e23142-bc87-4518-af93-739dc1396723")
+	//err := PublishPovUpdateSummaryEvent("4e542ee5-8f54-42af-b322-a879556d01c2")
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
+	//err = PublishPovUpdateSummaryEvent("29a59b84-31ff-4075-9c5e-a8b13ddaeff4")
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
+	//err = PublishPovUpdateSummaryEvent("6ac3e0f3-6b53-4e51-9262-7b615e1145e8")
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
+	//err = PublishPovUpdateSummaryEvent("87e6b0b2-fb30-4e80-8d62-7206e566f437")
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
+	//err = PublishPovUpdateSummaryEvent("0a7c55ab-16c6-41c6-8a97-bba9f466e9ca")
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
+	//err = PublishPovUpdateSummaryEvent("de8ea267-3d72-4524-b724-9f5d3777ce60")
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
+	err := PublishPovUpdateSummaryEvent("de7c35cf-0938-4586-aa1b-89ec4acdd506")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -71,7 +95,7 @@ func PublishPovUpdateSummaryEvent(pov string) error {
 	var startDate, endDate int64
 	ctx := context.Background()
 	povID := uuid.FromStringOrNil(pov)
-	startDate, endDate = 1708147881, 1708617600
+	startDate, endDate = 1715576400,1715594400
 
 	msg := &pb.MQChangedPovUpdateSummary{
 		PovId:     povID.Bytes(),
@@ -148,7 +172,7 @@ func NewPublisher() (amqp.Publisher, error) {
 
 func ParseAMQPBroker() amqp.Broker {
 	return amqp.NewBroker(
-		"192.168.83.128",
+		"192.168.83.129",
 		"guest",
 		"guest",
 		5672,

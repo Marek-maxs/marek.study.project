@@ -33,7 +33,7 @@ func main() {
 
 	fmt.Println(data)
 
-	povID := uuid.FromStringOrNil("d777481e-8594-4ef9-ae8e-2313a09c2301")
+	povID := uuid.FromStringOrNil("09bbfc4b-5326-4c06-9ebc-0e8176644c76")
 	newPov := base64.StdEncoding.EncodeToString(povID.Bytes())
 	fmt.Println(newPov)
 
@@ -53,10 +53,13 @@ func main() {
 
 	ts := 1704124800
 	a := time.Unix(int64(ts), 0)
-	loc,_ := time.LoadLocation("Asia/Shanghai")
+	loc, _ := time.LoadLocation("Asia/Shanghai")
 
 	fmt.Println(a.In(loc).String())
-fmt.Println("-------")
+	fmt.Println("-------")
+	fmt.Println(loc.String())
+	newLoc, _ := locationFromOffset(480)
+	fmt.Println(newLoc.String())
 	datas := []byte{0x00, 0x00, 0xc9, 0x20}
 
 	fmt.Println(cast.ToFloat32(binary.BigEndian.Uint32(datas)))
@@ -82,4 +85,17 @@ fmt.Println("-------")
 	arr[5].A = "222"
 	fmt.Println(arr[5])
 
+}
+
+func locationFromOffset(offset int32) (*time.Location, int32) {
+	offsetHour := offset / 60
+
+	locName := ""
+	if offsetHour >= 0 {
+		locName = fmt.Sprintf("UTC+%d", offsetHour)
+	} else { // minus
+		locName = fmt.Sprintf("UTC%d", offsetHour)
+	}
+
+	return time.FixedZone(locName, int(offset)*60), offsetHour
 }
