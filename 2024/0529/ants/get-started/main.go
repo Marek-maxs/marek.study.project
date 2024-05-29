@@ -9,10 +9,10 @@ import (
 )
 
 type Task struct {
-	index int
-	nums  []int
-	sum   int
 	wg    *sync.WaitGroup
+	nums  []int
+	index int
+	sum   int
 }
 
 func (t *Task) Do() {
