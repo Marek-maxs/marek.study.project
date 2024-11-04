@@ -179,6 +179,8 @@ obj/
 # Archiver with a compression algorithm based on the Burrows-Wheeler transform method.
 *.zz
 
+*.exe
+
 
 ### Compression ###
 
